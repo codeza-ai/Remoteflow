@@ -1,5 +1,6 @@
 import React from "react";
 import Link from 'next/link';
+import Image from 'next/image'; // Import the Image component from Next.js
 
 const Note = ({ title, author, desc, preview }: {
     title: string;
@@ -10,17 +11,19 @@ const Note = ({ title, author, desc, preview }: {
     return (
         <div className="flex flex-col md:flex-row border border-gray-200 dark:border-gray-600 rounded-xl w-full h-auto md:h-60 mt-4">
             {/* Image Section */}
-            <div className="w-full md:w-1/3 h-50 md:h-full">
+            <div className="w-full md:w-1/3 h-50 md:h-full relative">
                 <Link
                     href="/"
                     rel="noopener noreferrer"
                     target="_blank"
                     className="block w-full h-full rounded-xl overflow-hidden"
                 >
-                    <img
+                    <Image
                         src={preview}
-                        className="object-cover w-full h-full"
                         alt={title}
+                        className="object-cover"
+                        fill // This makes the image fill the parent container
+                        sizes="(max-width: 768px) 100vw, 33vw" // Use responsive image sizes for better performance
                     />
                 </Link>
             </div>
